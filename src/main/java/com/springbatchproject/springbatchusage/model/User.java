@@ -1,7 +1,6 @@
 package com.springbatchproject.springbatchusage.model;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
@@ -10,15 +9,15 @@ public class User {
     @Id
     private Long userId;
     private String name;
-    private Long departmentId;
+    private String dept;
     private Double salary;
 
     public User(){}
 
-    public User(Long userId, String name, Long departmentId, Double salary) {
+    public User(Long userId, String name, String dept, Double salary) {
         this.userId = userId;
         this.name = name;
-        this.departmentId = departmentId;
+        this.dept = dept;
         this.salary = salary;
     }
 
@@ -38,12 +37,12 @@ public class User {
         this.name = name;
     }
 
-    public Long getDepartmentId() {
-        return departmentId;
+    public String getDepartmentId() {
+        return dept;
     }
 
     public void setDepartmentId(String departmentId) {
-        this.departmentId = departmentId;
+        this.dept = departmentId;
     }
 
     public Double getSalary() {
@@ -52,5 +51,15 @@ public class User {
 
     public void setSalary(Double salary) {
         this.salary = salary;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "userId=" + userId +
+                ", name='" + name + '\'' +
+                ", dept='" + dept + '\'' +
+                ", salary=" + salary +
+                '}';
     }
 }
