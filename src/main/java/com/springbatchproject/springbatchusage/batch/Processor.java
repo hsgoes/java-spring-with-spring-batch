@@ -20,9 +20,10 @@ public class Processor implements ItemProcessor<User, User> {
 
     @Override
     public User process(User user) throws Exception {
-        String deptCode = user.getDepartmentId();
+        String deptCode = user.getDept();
         String dept = DEPT_NAMES.get(deptCode);
-        user.setDepartmentId(dept);
+        user.setDept(dept);
+        System.out.println(String.format("Converted from [%s] to [%s]", deptCode, dept));
 
         return user;
     }

@@ -37,11 +37,11 @@ public class User {
         this.name = name;
     }
 
-    public String getDepartmentId() {
+    public String getDept() {
         return dept;
     }
 
-    public void setDepartmentId(String departmentId) {
+    public void setDept(String departmentId) {
         this.dept = departmentId;
     }
 

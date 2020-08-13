@@ -3,6 +3,7 @@ package com.springbatchproject.springbatchusage.config;
 import com.springbatchproject.springbatchusage.model.User;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
+import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
 import org.springframework.batch.core.launch.support.RunIdIncrementer;
@@ -14,12 +15,14 @@ import org.springframework.batch.item.file.LineMapper;
 import org.springframework.batch.item.file.mapping.BeanWrapperFieldSetMapper;
 import org.springframework.batch.item.file.mapping.DefaultLineMapper;
 import org.springframework.batch.item.file.transform.DelimitedLineTokenizer;
-import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.Resource;
 
-@Configurable
+@Configuration
+@EnableBatchProcessing
 public class SpringBatchConfig {
 
     @Bean
@@ -44,10 +47,10 @@ public class SpringBatchConfig {
     }
 
     @Bean
-    public FlatFileItemReader<User> fileItemReader(@Value("${input}") Resource resource){
+    public FlatFileItemReader<User> itemReader(){
 
         FlatFileItemReader<User> flatFileItemReader = new FlatFileItemReader<>();
-        flatFileItemReader.setResource(resource);
+        flatFileItemReader.setResource(new FileSystemResource("src/main/resource/users.csv"));
         flatFileItemReader.setName("CSV-Reader");
         flatFileItemReader.setLinesToSkip(1);
         flatFileItemReader.setLineMapper(lineMapper());
